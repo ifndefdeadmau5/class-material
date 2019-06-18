@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import List from './List';
+import Item from './Item';
 import './App.css';
 
 function App() {
   const [input, setInput] = useState('');
-  // const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([]);
 
-  let todos = ['banana'];
+  let content = [];
 
-  console.log('todos:', todos);
-
+  for (let i = 0; i < todos.length; i++) {
+    content.push(<Item key={i}>{todos[i]}</Item>);
+    console.log('push ', todos[i])
+  }
   return (
     <div className="App">
       <input
@@ -19,21 +22,14 @@ function App() {
       />
       <button
         onClick={() => {
-          todos = [...todos, input];
-          const listElement = document.getElementById('list');
-          const newTodo = document.createTextNode(input); 
-          listElement.appendChild(newTodo)
+          setTodos([...todos, input]);
         }}
       >
         확인
       </button>
-      <List id="list">
-        {todos}
-      </List>
+      <List>{content}</List>
     </div>
   );
 }
 
 export default App;
-
-
