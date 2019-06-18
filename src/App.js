@@ -7,12 +7,6 @@ function App() {
   const [input, setInput] = useState('');
   const [todos, setTodos] = useState([]);
 
-  let content = [];
-
-  for (let i = 0; i < todos.length; i++) {
-    content.push(<Item key={i}>{todos[i]}</Item>);
-    console.log('push ', todos[i])
-  }
   return (
     <div className="App">
       <input
@@ -27,7 +21,11 @@ function App() {
       >
         확인
       </button>
-      <List>{content}</List>
+      <List>
+        {todos.map(todo => (
+          <Item>{todo}</Item>
+        ))}
+      </List>
     </div>
   );
 }
